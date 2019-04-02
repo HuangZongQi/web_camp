@@ -1,10 +1,10 @@
-#include"D:/homework/QG/zhan/¼ÆËãÆ÷/Stackhead.h"
+#include"D:/homework/QG/zhan/è®¡ç®—å™¨/Stackhead.h"
 #include<stdlib.h> 
 #include<string.h>
 #include<stdio.h>
 
-//Ë³ĞòÕ»(»ùÓÚÊı×éµÄ)
-Status initStack(SqStack *s)  //³õÊ¼»¯Õ»
+//é¡ºåºæ ˆ(åŸºäºæ•°ç»„çš„)
+Status initStack(SqStack *s)  //åˆå§‹åŒ–æ ˆ
 {
 	if(s == NULL)
 	return ERROR;
@@ -12,19 +12,19 @@ Status initStack(SqStack *s)  //³õÊ¼»¯Õ»
 	return OK;
 } 
 
-Status pushStack(SqStack *s,ElemType data)  //ÈëÕ»
+Status pushStack(SqStack *s,ElemType data)  //å…¥æ ˆ
 {
-	if(s->elem == NULL )  //Õ»Âú 
+	if(s->elem == NULL )  //æ ˆæ»¡ 
 		return ERROR;
 	else 
 	{
-		printf("ÈëÕ»Êı¾İ :%f\n",data);
+		printf("å…¥æ ˆæ•°æ® :%f\n",data);
 		s->top++;
 		s->elem[s->top] = data;
 		return OK;
 	}
 }
-Status popStack(SqStack *s,ElemType *data)   //³öÕ»
+Status popStack(SqStack *s,ElemType *data)   //å‡ºæ ˆ
 {
 	if(s == NULL || s->top == -1)
 	return ERROR;
@@ -58,6 +58,11 @@ double math(double num1,double num2,char ch)
 		
 		case '/': 
 		{
+			if(num2 == 0)
+			{
+				printf("åˆ†æ¯ä¸ä¸ºé›¶\n");
+				exit(0);
+			}
 			ret = num1 / num2;
 			break; 
 	    }
@@ -65,7 +70,7 @@ double math(double num1,double num2,char ch)
 	return ret;
 } 
 
-Status initCharStack(CharSqStack *sym)//³õÊ¼»¯Õ»
+Status initCharStack(CharSqStack *sym)//åˆå§‹åŒ–æ ˆ
 {
 	if(sym == NULL)
 	return ERROR;
@@ -73,15 +78,15 @@ Status initCharStack(CharSqStack *sym)//³õÊ¼»¯Õ»
 	return OK;
 }
 
-Status pushCharStack(CharSqStack *sym,CharElemType chardata)//ÈëÕ»
+Status pushCharStack(CharSqStack *sym,CharElemType chardata)//å…¥æ ˆ
 {
 		sym->top++;
 		sym->elem[sym->top] = chardata;
-		printf("%c ÈëÕ»\n",chardata);
+		printf("%c å…¥æ ˆ\n",chardata);
 		printf("sym->elem[%d] = %c",sym->top,sym->elem[sym->top]);
 		return OK;
 }
-Status popCharStack(CharSqStack *sym,CharElemType *chardata)//³öÕ»
+Status popCharStack(CharSqStack *sym,CharElemType *chardata)//å‡ºæ ˆ
 {
 	if(sym == NULL || sym->top == -1)
 		return ERROR;
@@ -89,14 +94,14 @@ Status popCharStack(CharSqStack *sym,CharElemType *chardata)//³öÕ»
 	sym->top--;
 	return OK;
 }
-Status JudgeScan(CharElemType chardata)//ÅĞ¶ÏÊäÈëµÄ×Ö·ûÊÇ·ñÕıÈ· 
+Status JudgeScan(CharElemType chardata)//åˆ¤æ–­è¾“å…¥çš„å­—ç¬¦æ˜¯å¦æ­£ç¡® 
 {
 	if(chardata == '+' || chardata == '-' || chardata == '*' || chardata == '/' || chardata == '(' || chardata == ')')
 	return OK;
 	else
 	return ERROR;
 }
-char Judgeprior(CharElemType ch1,CharElemType ch2)//ÅĞ¶ÏÊäÈëµÄ×Ö·ûµÄÓÅÏÈ¼¶ 
+char Judgeprior(CharElemType ch1,CharElemType ch2)//åˆ¤æ–­è¾“å…¥çš„å­—ç¬¦çš„ä¼˜å…ˆçº§ 
 {
 	char ch;
 	switch(ch1)
@@ -136,7 +141,7 @@ char Judgeprior(CharElemType ch1,CharElemType ch2)//ÅĞ¶ÏÊäÈëµÄ×Ö·ûµÄÓÅÏÈ¼¶
 				break;
 			}
 	}
-	printf("±È½ÏÓÅÏÈ¼¶\n");
+	printf("æ¯”è¾ƒä¼˜å…ˆçº§\n");
 	printf("ch = %c,ch1 = %c,ch2 = %c\n",ch,ch1,ch2);
 	return ch;
 }
